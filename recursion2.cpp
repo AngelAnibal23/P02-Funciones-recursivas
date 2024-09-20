@@ -1,18 +1,19 @@
-/*
-Escriba un programa recursivo que busque un valor x en un arreglo unidimensional de enteros
-*/ 
-
 #include <iostream> 
-#include <cstdlib>
-#include <ctime>
-
 using namespace std; 
 
-int busquedaX(int[], int, int); 
+int busqueda(int a[], int e, int num){
+	if(e==0){
+		return 0; 
+	}
+	else if(a[e-1]==num){
+		return 1;  
+	}
+	else{
+		return busqueda(a, e-1, num); 
+	}
+}
 
 int main(){
-	srand(time(0)); 
-	
 	int n, x; 
 	
 	cout<<"Digite la cantidad de elementos que tendra el arreglo: "; 
@@ -21,10 +22,11 @@ int main(){
 	int enteros[n]; 
 	
 	for(int i=0; i<n; i++){
-		enteros[i] = 1 + rand()% 9; 
-	}
+		cout<<"Digite el elemento ["<<i<<"]: "; 
+		cin>>enteros[i];  
+	} 
 	
-	cout<<"\nSe acaba de generar un arreglo aleatorio: "; 
+	cout<<"\nArreglo: "; 
 	for(int i=0; i<n; i++){
 		cout<<enteros[i]<<" "; 
 	}
@@ -35,7 +37,7 @@ int main(){
 		
 	int valor; 
 	
-	valor = busquedaX(enteros, n , x); 
+	valor = busqueda(enteros, n , x); 
 		
 	if(valor== 1){
 		cout<<"\nEl elemento existe en el arreglo. "; 
@@ -47,15 +49,5 @@ int main(){
 	return 0; 
 }
 
-int busquedaX(int a[], int elemen, int numero){
-	if(elemen==0){
-		return 0; 
-	}
-	else if(a[elemen-1]==numero){
-		return 1;  
-	}
-	else{
-		return busquedaX(a, elemen-1, numero); 
-	}
-}
+
 
